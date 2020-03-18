@@ -19,9 +19,9 @@ from rest_framework import routers
 from gerenciamento.api import viewsets
 
 router = routers.DefaultRouter()
-router.register(r'especialidades', viewsets.EspecialidadesViewSet)
-router.register(r'medicos', viewsets.MedicosViewSet)
-router.register(r'agendas', viewsets.AgendaViewSet)
+router.register(r'especialidades', viewsets.EspecialidadesViewSet, basename='especialidades')
+router.register(r'medicos', viewsets.MedicosViewSet, basename='medicos')
+router.register(r'agendas', viewsets.AgendaViewSet, basename='agenda')
 
 
 urlpatterns = [

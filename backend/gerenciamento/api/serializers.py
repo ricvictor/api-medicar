@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer, RelatedField
+from rest_framework.serializers import ModelSerializer, StringRelatedField
 from gerenciamento.models import Especialidades, Medicos, Horarios, Agenda
 from rest_framework.validators import UniqueTogetherValidator
 
@@ -14,14 +14,14 @@ class MedicosSerializer(ModelSerializer):
         model = Medicos
         fields = ['id','nome','crm','especialidade']
 
-class HorariosSerializer(ModelSerializer):
-    class Meta:
-        model = Horarios
-        fields = ['hora']
+# class HorariosSerializer(ModelSerializer):
+#     class Meta:
+#         model = Horarios
+#         fields = ['hora']
 
 class AgendaSerializer(ModelSerializer):
-    medico = MedicosSerializer(many=True)
-    horarios = HorariosSerializer(many=True)
+    medico = MedicosSerializer(read_only=True)
+    horarios = StringRelatedField(many=True)
 
     class Meta:
         model = Agenda
